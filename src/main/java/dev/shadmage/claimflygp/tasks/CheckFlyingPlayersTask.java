@@ -1,6 +1,7 @@
 package dev.shadmage.claimflygp.tasks;
 
 import dev.shadmage.claimflygp.ClaimFlyGPPlugin;
+import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.utils.FlightCheck;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -14,7 +15,7 @@ public class CheckFlyingPlayersTask extends BukkitRunnable {
 
 	@Override
 	public void run() {
-		Common.setTellPrefix(ClaimFlyGPPlugin.TELL_PREFIX);
+		Common.setTellPrefix(Settings.ClaimFly.CLAIMFLY_CHAT_PREFIX);
 
 		for (Player player : Remain.getOnlinePlayers()) {
 			if (player.isFlying()) {

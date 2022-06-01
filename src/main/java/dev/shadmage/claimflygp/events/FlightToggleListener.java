@@ -1,6 +1,7 @@
 package dev.shadmage.claimflygp.events;
 
 import dev.shadmage.claimflygp.ClaimFlyGPPlugin;
+import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.utils.FlightCheck;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,7 +15,7 @@ public class FlightToggleListener implements Listener {
 
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
 	public void onFlightToggle(PlayerToggleFlightEvent event) {
-		Common.setTellPrefix(ClaimFlyGPPlugin.TELL_PREFIX);
+		Common.setTellPrefix(Settings.ClaimFly.CLAIMFLY_CHAT_PREFIX);
 		Player player = event.getPlayer();
 		String checkResult = flightCheck.check(player);
 		if (event.isFlying()) {

@@ -9,8 +9,5 @@ Prefix: "&8[&9Claim Fly&8]&e"
 Log_Lag_Over_Millis: 100
 Debug: [ ]
 Command_Aliases: [ servercore, ddg ]
-RandomTeleport:
-  RTP_Cooldown_Seconds: 10
-  RTP_World: world
-  RTP_Range: 5000
-  RTP_Attempts: 10
+ClaimFly:
+  ChatPrefix: "&8[&9Claim Fly&8]&e"

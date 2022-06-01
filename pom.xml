@@ -31,7 +31,7 @@
         <foundation.path>com.github.kangarko</foundation.path>
 
         <!-- The Spigot API version to use, see https://hub.spigotmc.org/nexus/content/groups/public/org/spigotmc/spigot-api/ -->
-        <spigot.version>1.18.2-R0.1-SNAPSHOT</spigot.version>
+        <spigot.version>1.18.1-R0.1-SNAPSHOT</spigot.version>
 
         <!-- The Maven Compiler version to use, see https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
         <mavencompiler.version>3.10.1</mavencompiler.version>

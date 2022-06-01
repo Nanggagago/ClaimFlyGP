@@ -16,7 +16,6 @@ public class ClaimFlyGPPlugin extends SimplePlugin {
 	private CheckFlyingPlayersTask checkFlyingPlayersTask;
 
 
-	public static final String TELL_PREFIX = "&8[&9Claim Fly&8]&e";
 	public static final int TASK_TIMER_TICKS = 5;
 
 	public static final String PERMISSION_CLAIMFLY_USE = "servercore.claimfly.use";
