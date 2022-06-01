@@ -38,7 +38,7 @@
 
         <!-- The Maven Shade Plugin version to use, see https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-shade-plugin -->
         <!-- Snapshot builds can be found at: https://repository.apache.org/content/groups/snapshots/org/apache/maven/plugins/maven-shade-plugin/ -->
-        <mavenshade.version>3.3.0-SNAPSHOT</mavenshade.version>
+        <mavenshade.version>3.3.0</mavenshade.version>
 
         <!-- GRIEFPREVENTION: get latest version from github: https://github.com/TechFortress/GriefPrevention/releases -->
         <griefprevention.version>16.18</griefprevention.version>
