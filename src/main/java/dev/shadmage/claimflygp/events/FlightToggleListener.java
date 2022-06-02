@@ -11,7 +11,7 @@ import org.mineacademy.fo.Common;
 import org.mineacademy.fo.annotation.AutoRegister;
 
 @AutoRegister
-public class FlightToggleListener implements Listener {
+public final class FlightToggleListener implements Listener {
 	final FlightCheck flightCheck = new FlightCheck();
 
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)

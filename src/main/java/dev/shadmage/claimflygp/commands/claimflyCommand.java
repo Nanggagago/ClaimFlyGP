@@ -7,7 +7,7 @@ import org.mineacademy.fo.annotation.AutoRegister;
 import org.mineacademy.fo.command.SimpleCommand;
 
 @AutoRegister
-public class claimflyCommand extends SimpleCommand {
+public final class claimflyCommand extends SimpleCommand {
 	public claimflyCommand() {
 		super("claimfly|cfly|fly");
 		setPermission("servercore.command.claimfly");

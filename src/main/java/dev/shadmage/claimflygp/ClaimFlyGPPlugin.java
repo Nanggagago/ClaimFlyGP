@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class ClaimFlyGPPlugin extends SimplePlugin {
-	private static ClaimFlyGPPlugin instance;
 	private CheckFlyingPlayersTask checkFlyingPlayersTask;
 
 	public static final int TASK_TIMER_TICKS = 5;
@@ -23,18 +22,7 @@ public class ClaimFlyGPPlugin extends SimplePlugin {
 	public static final String PERMISSION_CLAIMFLY_UNCLAIMED = "servercore.claimfly.claims.unclaimed";
 
 	public static ClaimFlyGPPlugin getInstance() {
-		if (instance == null) {
-			try {
-				instance = JavaPlugin.getPlugin(ClaimFlyGPPlugin.class);
-			} catch (IllegalStateException ex) {
-				if (Bukkit.getPluginManager().getPlugin("PlugMan") != null) {
-					Bukkit.getLogger().severe("Failed to get instance of the plugin, if you reloaded using PlugMan you need to do a clean restart instead.");
-				}
-				throw ex;
-			}
-			Objects.requireNonNull(instance, "Cannot get a new instance! Have you reloaded?");
-		}
-		return instance;
+		return (ClaimFlyGPPlugin) SimplePlugin.getInstance();
 	}
 
 	@Override
