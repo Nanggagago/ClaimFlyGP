@@ -8,6 +8,6 @@ Version: 7
 Prefix: "&8[&9Claim Fly&8]&e"
 Log_Lag_Over_Millis: 100
 Debug: [ ]
-Command_Aliases: [ servercore, ddg ]
+Command_Aliases: [ claimflygp ]
 ClaimFly:
   ChatPrefix: "&8[&9Claim Fly&8]&e"

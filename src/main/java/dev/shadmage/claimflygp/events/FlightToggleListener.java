@@ -1,6 +1,5 @@
 package dev.shadmage.claimflygp.events;
 
-import dev.shadmage.claimflygp.ClaimFlyGPPlugin;
 import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.utils.FlightCheck;
 import org.bukkit.entity.Player;
@@ -9,7 +8,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
 import org.mineacademy.fo.Common;
+import org.mineacademy.fo.annotation.AutoRegister;
 
+@AutoRegister
 public class FlightToggleListener implements Listener {
 	final FlightCheck flightCheck = new FlightCheck();
 

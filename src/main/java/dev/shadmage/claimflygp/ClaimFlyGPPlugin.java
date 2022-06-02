@@ -15,7 +15,6 @@ public class ClaimFlyGPPlugin extends SimplePlugin {
 	private static ClaimFlyGPPlugin instance;
 	private CheckFlyingPlayersTask checkFlyingPlayersTask;
 
-
 	public static final int TASK_TIMER_TICKS = 5;
 
 	public static final String PERMISSION_CLAIMFLY_USE = "servercore.claimfly.use";
@@ -40,7 +39,11 @@ public class ClaimFlyGPPlugin extends SimplePlugin {
 
 	@Override
 	protected void onPluginStart() {
+		/* AutoRegister this
 		Common.registerEvents(new FlightToggleListener());
+		*/
+
+
 	}
 
 	@Override
@@ -52,11 +55,4 @@ public class ClaimFlyGPPlugin extends SimplePlugin {
 		checkFlyingPlayersTask = new CheckFlyingPlayersTask();
 		checkFlyingPlayersTask.runTaskTimer(this, 0, TASK_TIMER_TICKS);
 	}
-
-	/* Auto? */
-	//@Override
-	//public List<Class<? extends YamlStaticConfig>> getSettings() {
-	//	return List.of(Settings.class);
-	//}
-
 }

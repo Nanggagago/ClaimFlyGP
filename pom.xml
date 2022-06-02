@@ -3,48 +3,26 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <!-- ############################################################################### -->
-    <!-- Basic plugin configuration, start here -->
-    <!-- ############################################################################### -->
-
-    <!--
-       The Group ID represents the main package of your plugin
-       The Artifact ID represents the name of your plugin.
-       The Name represents the full name of your plugin
-       The Version is current version of your plugin.
-    -->
+    <!-- =============================================================================================================== -->
     <groupId>dev.shadmage</groupId>
     <artifactId>claimflygp</artifactId>
     <name>ClaimFlyGP</name>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <packaging>jar</packaging>
-
+    <!-- =============================================================================================================== -->
     <properties>
         <author>shadmage</author>
-
-        <!-- The full path to your plugin's main class, so that Spigot can find and load it -->
         <main.class>dev.shadmage.claimflygp.ClaimFlyGPPlugin</main.class>
-
-        <!-- The Foundation version - change to latest version from https://github.com/kangarko/Foundation/releases -->
-        <foundation.version>6.0.1</foundation.version>
+        <!-- =========================================================================================================== -->
+        <foundation.version>6.0.1</foundation.version> <!-- https://github.com/kangarko/Foundation/releases -->
         <foundation.path>com.github.kangarko</foundation.path>
-
-        <!-- The Spigot API version to use, see https://hub.spigotmc.org/nexus/content/groups/public/org/spigotmc/spigot-api/ -->
-        <spigot.version>1.18.1-R0.1-SNAPSHOT</spigot.version>
-
-        <!-- The Maven Compiler version to use, see https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
-        <mavencompiler.version>3.10.1</mavencompiler.version>
-
-        <!-- The Maven Shade Plugin version to use, see https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-shade-plugin -->
-        <!-- Snapshot builds can be found at: https://repository.apache.org/content/groups/snapshots/org/apache/maven/plugins/maven-shade-plugin/ -->
-        <mavenshade.version>3.3.0</mavenshade.version>
-
-        <!-- GRIEFPREVENTION: get latest version from github: https://github.com/TechFortress/GriefPrevention/releases -->
-        <griefprevention.version>16.18</griefprevention.version>
-
-        <!-- This should always be UTF-8 -->
+        <spigot.version>1.18.1-R0.1-SNAPSHOT</spigot.version> <!-- https://hub.spigotmc.org/nexus/content/groups/public/org/spigotmc/spigot-api/ -->
+        <mavencompiler.version>3.10.1</mavencompiler.version> <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+        <mavenshade.version>3.3.1-SNAPSHOT</mavenshade.version> <!-- https://repository.apache.org/content/repositories/snapshots/org/apache/maven/plugins/maven-shade-plugin/ -->
+        <mavenjarplugin.version>3.2.2</mavenjarplugin.version> <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jar-plugin -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>17</java.version>
+        <griefprevention.version>16.18</griefprevention.version> <!-- https://github.com/TechFortress/GriefPrevention/releases -->
 
         <java.version>16</java.version>
     </properties>
@@ -54,10 +32,6 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
-        <!--<repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
-        </repository>-->
     </repositories>
 
     <pluginRepositories>
@@ -74,13 +48,11 @@
             <version>${griefprevention.version}</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>${foundation.path}</groupId>
             <artifactId>Foundation</artifactId>
             <version>${foundation.version}</version>
         </dependency>
-
         <dependency>
             <groupId>net.luckperms</groupId>
             <artifactId>api</artifactId>
@@ -91,12 +63,10 @@
 
     <build>
         <plugins>
-            <!-- Change version to the latest one from
-                     https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jar-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>${mavenjarplugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
