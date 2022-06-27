@@ -14,7 +14,7 @@
         <author>shadmage</author>
         <main.class>dev.shadmage.claimflygp.ClaimFlyGPPlugin</main.class>
         <!-- =========================================================================================================== -->
-        <foundation.version>6.0.1</foundation.version> <!-- https://github.com/kangarko/Foundation/releases -->
+        <foundation.version>6.0.2</foundation.version> <!-- https://github.com/kangarko/Foundation/releases -->
         <foundation.path>com.github.kangarko</foundation.path>
         <spigot.version>1.19-R0.1-SNAPSHOT</spigot.version> <!-- https://hub.spigotmc.org/nexus/content/groups/public/org/spigotmc/spigot-api/ -->
         <mavencompiler.version>3.10.1</mavencompiler.version> <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
