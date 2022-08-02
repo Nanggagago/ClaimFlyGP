@@ -27,18 +27,11 @@ public class ClaimFlyGPPlugin extends SimplePlugin {
 
 	@Override
 	protected void onPluginStart() {
-		/* AutoRegister this
-		Common.registerEvents(new FlightToggleListener());
-		*/
-
 
 	}
 
 	@Override
 	protected void onReloadablesStart() {
-		//Any timed task should be added to this block
-		// Broadcasters/etc
-
 		//Add in the claimfly check
 		checkFlyingPlayersTask = new CheckFlyingPlayersTask();
 		checkFlyingPlayersTask.runTaskTimer(this, 0, TASK_TIMER_TICKS);

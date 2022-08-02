@@ -1,9 +1,12 @@
 package dev.shadmage.claimflygp.utils;
 
 import me.ryanhamshire.GriefPrevention.Claim;
+import me.ryanhamshire.GriefPrevention.ClaimPermission;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+
+import java.util.function.Supplier;
 
 public class ClaimUtils {
 
@@ -16,15 +19,13 @@ public class ClaimUtils {
 	}
 
 	public static boolean hasAccessTrust(Player player) {
-        /*This is kinda odd but GP allowAccess returns null when a player has
-        trust and a string when they do not*/
-		String string = getClaim(player).allowAccess(player);
-		return string == null;
+        Supplier<String> supplier = getClaim(player).checkPermission(player, ClaimPermission.Access, null);
+		return supplier == null;
 	}
 
 	public static boolean hasAccessTrust(Player player, Location location) {
-		String string = getClaim(location).allowAccess(player);
-		return string == null;
+		Supplier<String> supplier = getClaim(player).checkPermission(player, ClaimPermission.Access, null);
+		return supplier == null;
 	}
 
 	public static boolean isClaimOwner(Player player) {

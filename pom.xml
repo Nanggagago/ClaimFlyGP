@@ -7,14 +7,14 @@
     <groupId>dev.shadmage</groupId>
     <artifactId>claimflygp</artifactId>
     <name>ClaimFlyGP</name>
-    <version>2.1.1</version>
+    <version>2.1.2</version>
     <packaging>jar</packaging>
     <!-- =============================================================================================================== -->
     <properties>
         <author>shadmage</author>
         <main.class>dev.shadmage.claimflygp.ClaimFlyGPPlugin</main.class>
         <!-- =========================================================================================================== -->
-        <foundation.version>6.0.2</foundation.version> <!-- https://github.com/kangarko/Foundation/releases -->
+        <foundation.version>6.0.8</foundation.version> <!-- https://github.com/kangarko/Foundation/releases -->
         <foundation.path>com.github.kangarko</foundation.path>
         <mavencompiler.version>3.10.1</mavencompiler.version> <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
         <mavenshade.version>3.3.1-SNAPSHOT</mavenshade.version> <!-- https://repository.apache.org/content/repositories/snapshots/org/apache/maven/plugins/maven-shade-plugin/ -->
@@ -49,12 +49,6 @@
             <groupId>${foundation.path}</groupId>
             <artifactId>Foundation</artifactId>
             <version>${foundation.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.luckperms</groupId>
-            <artifactId>api</artifactId>
-            <version>5.4</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
