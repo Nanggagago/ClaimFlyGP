@@ -2,6 +2,7 @@ package dev.shadmage.claimflygp.utils;
 
 import dev.shadmage.claimflygp.ClaimFlyGPPlugin;
 import me.ryanhamshire.GriefPrevention.Claim;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.mineacademy.fo.remain.CompParticle;
@@ -34,26 +35,29 @@ public class FlightCheck {
 	}
 
 	private void showFlightBoundaries(Player player) {
-		Claim claimAtPlayer = ClaimUtils.getClaim(player);
-		Location playerLoc = player.getLocation();
 
-		if (claimAtPlayer != null) {
-			Location[] locs = new Location[4];
-			locs[0] = new Location(player.getWorld(), playerLoc.getBlockX() + .5, playerLoc.getBlockY() + 2, claimAtPlayer.getLesserBoundaryCorner().getBlockZ() + .5);
-			locs[1] = new Location(player.getWorld(), claimAtPlayer.getLesserBoundaryCorner().getBlockX() + .5, playerLoc.getBlockY() + 2, playerLoc.getBlockZ() + .5);
-			locs[2] = new Location(player.getWorld(), playerLoc.getBlockX() + .5, playerLoc.getBlockY() + 2, claimAtPlayer.getGreaterBoundaryCorner().getBlockZ() + .5);
-			locs[3] = new Location(player.getWorld(), claimAtPlayer.getGreaterBoundaryCorner().getBlockX() + .5, playerLoc.getBlockY() + 2, playerLoc.getBlockZ() + .5);
+		if(player.getGameMode() == GameMode.SURVIVAL) {
+			Claim claimAtPlayer = ClaimUtils.getClaim(player);
+			Location playerLoc = player.getLocation();
 
-			for (int i = 0; i <= 3; i++) {
-				int checkDistance = 6;
-				if (playerLoc.distance(locs[i]) <= checkDistance) {
-					CompParticle.VILLAGER_ANGRY.spawn(player, locs[i]);
-					CompParticle.VILLAGER_ANGRY.spawn(player, locs[i].subtract(0, 1, 0));
-					CompParticle.VILLAGER_ANGRY.spawn(player, locs[i].add(0, 1, 0));
+			if (claimAtPlayer != null) {
+				Location[] locs = new Location[4];
+				locs[0] = new Location(player.getWorld(), playerLoc.getBlockX() + .5, playerLoc.getBlockY() + 2, claimAtPlayer.getLesserBoundaryCorner().getBlockZ() + .5);
+				locs[1] = new Location(player.getWorld(), claimAtPlayer.getLesserBoundaryCorner().getBlockX() + .5, playerLoc.getBlockY() + 2, playerLoc.getBlockZ() + .5);
+				locs[2] = new Location(player.getWorld(), playerLoc.getBlockX() + .5, playerLoc.getBlockY() + 2, claimAtPlayer.getGreaterBoundaryCorner().getBlockZ() + .5);
+				locs[3] = new Location(player.getWorld(), claimAtPlayer.getGreaterBoundaryCorner().getBlockX() + .5, playerLoc.getBlockY() + 2, playerLoc.getBlockZ() + .5);
+
+				for (int i = 0; i <= 3; i++) {
+					int checkDistance = 6;
+					if (playerLoc.distance(locs[i]) <= checkDistance) {
+						CompParticle.COMPOSTER.spawn(player, locs[i]);
+						CompParticle.COMPOSTER.spawn(player, locs[i].subtract(0, 1, 0));
+						CompParticle.COMPOSTER.spawn(player, locs[i].add(0, 1, 0));
+					}
 				}
+
+
 			}
-
-
 		}
 	}
 }
