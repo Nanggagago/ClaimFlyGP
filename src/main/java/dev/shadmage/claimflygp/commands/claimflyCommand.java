@@ -10,7 +10,7 @@ import org.mineacademy.fo.command.SimpleCommand;
 public final class claimflyCommand extends SimpleCommand {
 	public claimflyCommand() {
 		super("claimfly|cfly|fly");
-		setPermission("servercore.command.claimfly");
+		setPermission("claimfly.command.claimfly");
 	}
 
 	@Override

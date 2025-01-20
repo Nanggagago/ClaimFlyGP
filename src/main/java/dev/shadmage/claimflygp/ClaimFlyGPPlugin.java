@@ -16,10 +16,10 @@ public class ClaimFlyGPPlugin extends SimplePlugin {
 
 	public static final int TASK_TIMER_TICKS = 5;
 
-	public static final String PERMISSION_CLAIMFLY_USE = "servercore.claimfly.use";
-	public static final String PERMISSION_CLAIMFLY_ADMIN = "servercore.claimfly.claims.admin";
-	public static final String PERMISSION_CLAIMFLY_OTHERS = "servercore.claimfly.claims.others";
-	public static final String PERMISSION_CLAIMFLY_UNCLAIMED = "servercore.claimfly.claims.unclaimed";
+	public static final String PERMISSION_CLAIMFLY_USE = "claimfly.use";
+	public static final String PERMISSION_CLAIMFLY_ADMIN = "claimfly.claims.admin";
+	public static final String PERMISSION_CLAIMFLY_OTHERS = "claimfly.claims.others";
+	public static final String PERMISSION_CLAIMFLY_UNCLAIMED = "claimfly.claims.unclaimed";
 
 	public static ClaimFlyGPPlugin getInstance() {
 		return (ClaimFlyGPPlugin) SimplePlugin.getInstance();
