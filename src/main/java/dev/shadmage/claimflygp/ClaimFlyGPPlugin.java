@@ -1,5 +1,6 @@
 package dev.shadmage.claimflygp;
 
+import dev.shadmage.claimflygp.bstats.Metrics;
 import dev.shadmage.claimflygp.events.FlightToggleListener;
 import dev.shadmage.claimflygp.tasks.CheckFlyingPlayersTask;
 import org.bukkit.Bukkit;
@@ -27,7 +28,8 @@ public class ClaimFlyGPPlugin extends SimplePlugin {
 
 	@Override
 	protected void onPluginStart() {
-
+		//enable bstats
+		Metrics metrics = new Metrics(this, 24525);
 	}
 
 	@Override
