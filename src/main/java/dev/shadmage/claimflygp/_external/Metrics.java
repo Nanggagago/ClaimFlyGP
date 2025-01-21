@@ -1,4 +1,4 @@
-package dev.shadmage.claimflygp.bstats;
+package dev.shadmage.claimflygp._external;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;

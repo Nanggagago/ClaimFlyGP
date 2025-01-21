@@ -1,16 +1,9 @@
 package dev.shadmage.claimflygp;
 
-import dev.shadmage.claimflygp.bstats.Metrics;
-import dev.shadmage.claimflygp.events.FlightToggleListener;
+import dev.shadmage.claimflygp._external.Metrics;
+import dev.shadmage.claimflygp._external.SpigotUpdateChecker;
 import dev.shadmage.claimflygp.tasks.CheckFlyingPlayersTask;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.mineacademy.fo.Common;
 import org.mineacademy.fo.plugin.SimplePlugin;
-import org.mineacademy.fo.settings.YamlStaticConfig;
-
-import java.util.List;
-import java.util.Objects;
 
 public class ClaimFlyGPPlugin extends SimplePlugin {
 	private CheckFlyingPlayersTask checkFlyingPlayersTask;
@@ -28,8 +21,8 @@ public class ClaimFlyGPPlugin extends SimplePlugin {
 
 	@Override
 	protected void onPluginStart() {
-		//enable bstats
 		Metrics metrics = new Metrics(this, 24525);
+		SpigotUpdateChecker spigotUpdateChecker = new SpigotUpdateChecker(this, 122058);
 	}
 
 	@Override
