@@ -8,3 +8,10 @@ Debug: [ ]
 Command_Aliases: [ claimflygp ]
 ClaimFly:
   ChatPrefix: "&8[&9Claim Fly&8]&e"
+Messages:
+  noFlyPerms: '&cYou do not have permission to fly on this server!'
+  # Accepts %ClaimOwner% placeholder to get the current claimowners name
+  noFlyThisClaim: '&cYou do not have permission to fly in this claim! Ask &6%ClaimOwner% &c for /accesstrust.'
+  noFlyOutsideClaims: '&cYou cannot fly outside of claims!'
+  FlightEnabled: 'Flight mode has been enabled.'
+  FlightDisabled: 'Flight mode has been disabled.'

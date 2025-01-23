@@ -1,5 +1,6 @@
 package dev.shadmage.claimflygp.commands;
 
+import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.utils.FlightCheck;
 import org.bukkit.entity.Player;
 import org.mineacademy.fo.Common;
@@ -23,7 +24,7 @@ public final class claimflyCommand extends SimpleCommand {
 		if (checkResult.equals(FlightCheck.FLIGHT_ALLOWED)) {
 			boolean newFlightStatus = !(player.getAllowFlight());
 			player.setAllowFlight(newFlightStatus);
-			tellInfo("Flight mode has been " + (newFlightStatus ? "enabled." : "disabled."));
+			tellInfo((newFlightStatus ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED));
 		} else {
 			Common.tell(player, checkResult);
 		}

@@ -25,10 +25,7 @@ public final class FlightToggleListener implements Listener {
 				Common.tellTimed(5, player, checkResult);
 				event.setCancelled(true);
 			}
-		} else {
-
 		}
-
 	}
 
 }

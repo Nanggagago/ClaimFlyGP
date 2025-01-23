@@ -2,33 +2,23 @@ package dev.shadmage.claimflygp;
 
 import dev.shadmage.claimflygp._external.Metrics;
 import dev.shadmage.claimflygp._external.SpigotUpdateChecker;
+import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.tasks.CheckFlyingPlayersTask;
+import org.mineacademy.fo.Common;
 import org.mineacademy.fo.plugin.SimplePlugin;
 
 public class ClaimFlyGPPlugin extends SimplePlugin {
-	private CheckFlyingPlayersTask checkFlyingPlayersTask;
-
-	public static final int TASK_TIMER_TICKS = 5;
-
-	public static final String PERMISSION_CLAIMFLY_USE = "claimfly.use";
-	public static final String PERMISSION_CLAIMFLY_ADMIN = "claimfly.claims.admin";
-	public static final String PERMISSION_CLAIMFLY_OTHERS = "claimfly.claims.others";
-	public static final String PERMISSION_CLAIMFLY_UNCLAIMED = "claimfly.claims.unclaimed";
-
-	public static ClaimFlyGPPlugin getInstance() {
-		return (ClaimFlyGPPlugin) SimplePlugin.getInstance();
-	}
 
 	@Override
 	protected void onPluginStart() {
+		Common.setLogPrefix(Settings.LOG_PREFIX);
+		Common.setTellPrefix(Settings.ClaimFly.CLAIMFLY_CHAT_PREFIX);
 		Metrics metrics = new Metrics(this, 24525);
 		SpigotUpdateChecker spigotUpdateChecker = new SpigotUpdateChecker(this, 122058);
 	}
 
 	@Override
 	protected void onReloadablesStart() {
-		//Add in the claimfly check
-		checkFlyingPlayersTask = new CheckFlyingPlayersTask();
-		checkFlyingPlayersTask.runTaskTimer(this, 0, TASK_TIMER_TICKS);
+		Common.runTimer(0, 5, new CheckFlyingPlayersTask());
 	}
 }
