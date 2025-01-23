@@ -1,10 +1,7 @@
-#
-# Dirty Dog Gaming ServerCore
-# This plugin has been written exclusively for use by Dirty Dog Gaming
-# Any distribution of this plugin is not allowed. No support will be offered
-# to any other user if not part of the Dirty Dog Gaming team.
-#
-Version: 7
+# !-----------------------------------------------------------------------------------------------!
+#                       Welcome to the main configuration of ${project.name}
+# !-----------------------------------------------------------------------------------------------!
+Version: 1
 Prefix: "&8[&9Claim Fly&8]&e"
 Log_Lag_Over_Millis: 100
 Debug: [ ]
