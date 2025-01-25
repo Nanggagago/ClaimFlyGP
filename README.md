@@ -22,11 +22,13 @@ Dependancies:
 Commands:
 - /claimfly | /cfly | /fly
 
-Permissions:
-- `claimfly.use` - allows use of the command and flight in own claims
-- `claimfly.claims.admin` - allows flight in admin claims
-- `claimfly.claims.others` - allows flight in other players claims if they have Access Trust
-- `claimfly.claims.unclaimed` - allows flight outside of claimed areas
+>[!IMPORTANT]
+> Permissions:
+> - `claimfly.use` - allows use of the command and flight in own claims
+> - `claimfly.claims.admin` - allows flight in admin claims
+> - `claimfly.claims.others` - allows flight in other players claims if they have Access Trust
+> - `claimfly.claims.unclaimed` - allows flight outside of claimed areas
+
 Configuration:
 No additional config needed. Drop in, Set permissions and it just works.
 Additional features and all messages can be customized in the config file though.
