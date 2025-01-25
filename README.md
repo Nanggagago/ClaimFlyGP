@@ -12,7 +12,8 @@ Features:
   - Claims where they have Access Trust
   - Admin claims
   - Outside of claimed areas
-- Automatically enable or disable flight mode when players enter or leave a claimed area so that players don't need to use the /claimfly command
+> [!WARNING] Experimental Feature - has potential to cause lag?
+> - Automatically enable or disable flight mode when players enter or leave a claimed area so that players don't need to use the /claimfly command
 This feature can be enabled in the settings.yml file
 If you enable this feature, players will still be able to use the command as well
 
