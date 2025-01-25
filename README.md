@@ -3,8 +3,6 @@
 - Plugin Available on [SpigotMC](https://www.spigotmc.org/resources/claimfly-griefprevention-addon.122058/)
 - View Plugin Stats [bStats](https://bstats.org/plugin/bukkit/ClaimFly%20-%20GriefPrevention%20Addon/24525)
 
-We've all seen it before... Players want to be able to fly, but limiting that flight can become an issue. With this addon you can limit player flight only to claims they own. This can also extend to staff and builders since you can restrict flight to admin claims or other player claims, but not in unclaimed areas
-
 Features:
 
 - Choose where players can fly by setting permissions:
@@ -19,7 +17,7 @@ This feature can be enabled in the settings.yml file
 If you enable this feature, players will still be able to use the command as well
 
 Dependancies:
-- GriefPrevention
+- [GriefPrevention](https://github.com/GriefPrevention)
 
 Commands:
 - /claimfly | /cfly | /fly
