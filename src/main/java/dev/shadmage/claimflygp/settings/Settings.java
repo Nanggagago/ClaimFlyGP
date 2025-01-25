@@ -22,10 +22,14 @@ public class Settings extends SimpleSettings {
 
 	public static class ClaimFly {
 		public static String CLAIMFLY_CHAT_PREFIX;
+		public static Boolean IGNORE_CREATIVE;
+		public static Boolean IGNORE_SPECTATOR;
 
 		private static void init() {
 			setPathPrefix("ClaimFly");
 			CLAIMFLY_CHAT_PREFIX = getString("ChatPrefix");
+			IGNORE_CREATIVE = getBoolean("ignoreCreativeMode");
+			IGNORE_SPECTATOR = getBoolean("ignoreSpectatorMode");
 		}
 	}
 

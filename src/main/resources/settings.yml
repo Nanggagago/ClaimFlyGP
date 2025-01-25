@@ -8,6 +8,8 @@ Debug: [ ]
 Command_Aliases: [ claimflygp ]
 ClaimFly:
   ChatPrefix: "&8[&9Claim Fly&8]&e"
+  ignoreCreativeMode: true
+  ignoreSpectatorMode: true
 Messages:
   noFlyPerms: '&cYou do not have permission to fly on this server!'
   # Accepts %ClaimOwner% placeholder to get the current claimowners name

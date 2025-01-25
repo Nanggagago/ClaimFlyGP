@@ -3,6 +3,7 @@ package dev.shadmage.claimflygp.tasks;
 import dev.shadmage.claimflygp.ClaimFlyGPPlugin;
 import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.utils.FlightCheck;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -18,6 +19,9 @@ public class CheckFlyingPlayersTask extends BukkitRunnable {
 		Common.setTellPrefix(Settings.ClaimFly.CLAIMFLY_CHAT_PREFIX);
 
 		for (Player player : Remain.getOnlinePlayers()) {
+			GameMode playerGamemode = player.getGameMode();
+			if(Settings.ClaimFly.IGNORE_CREATIVE && playerGamemode == GameMode.CREATIVE) return;
+			if(Settings.ClaimFly.IGNORE_SPECTATOR && playerGamemode == GameMode.SPECTATOR) return;
 			if (player.isFlying()) {
 				String checkResult;
 				checkResult = flightCheck.check(player);
