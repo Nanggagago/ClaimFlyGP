@@ -11,6 +11,4 @@ public class PermissionsData {
 	public static final String PERMISSION_CLAIMFLY_OTHERS = "claimfly.claims.others";
 	@Permission
 	public static final String PERMISSION_CLAIMFLY_UNCLAIMED = "claimfly.claims.unclaimed";
-	@Permission
-	public static final String PERMISSION_CLAIMFLY_COMMAND = "claimfly.command.claimfly";
 }
