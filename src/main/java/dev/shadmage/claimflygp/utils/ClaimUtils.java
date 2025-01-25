@@ -24,7 +24,7 @@ public class ClaimUtils {
 	}
 
 	public static boolean hasAccessTrust(Player player, Location location) {
-		Supplier<String> supplier = getClaim(player).checkPermission(player, ClaimPermission.Access, null);
+		Supplier<String> supplier = getClaim(location).checkPermission(player, ClaimPermission.Access, null);
 		return supplier == null;
 	}
 

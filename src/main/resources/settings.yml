@@ -10,6 +10,10 @@ ClaimFly:
   ChatPrefix: "&8[&9Claim Fly&8]&e"
   ignoreCreativeMode: true
   ignoreSpectatorMode: true
+  # EXPERIMENTAL - on large servers this may have an impact on performance
+  # Players wont need to use /claimfly command to be able to fly if this is enabled
+  # *NB* This will allow flight, not make them start flying.
+  AutoAllowFlightOnEnterClaim: false
 Messages:
   noFlyPerms: '&cYou do not have permission to fly on this server!'
   # Accepts %ClaimOwner% placeholder to get the current claimowners name

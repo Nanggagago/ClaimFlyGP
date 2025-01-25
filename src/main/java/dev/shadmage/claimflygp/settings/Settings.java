@@ -1,10 +1,6 @@
 package dev.shadmage.claimflygp.settings;
 
-import com.bekvon.bukkit.residence.commands.current;
-import org.mineacademy.fo.Common;
 import org.mineacademy.fo.settings.SimpleSettings;
-
-import java.util.List;
 
 public class Settings extends SimpleSettings {
 	public static String LOG_PREFIX;
@@ -12,6 +8,11 @@ public class Settings extends SimpleSettings {
 	private static void init() {
 		setPathPrefix("");
 		LOG_PREFIX = getString("Prefix");
+	}
+
+	@Override
+	protected boolean saveComments() {
+		return true;
 	}
 
 	@Override
@@ -24,12 +25,14 @@ public class Settings extends SimpleSettings {
 		public static String CLAIMFLY_CHAT_PREFIX;
 		public static Boolean IGNORE_CREATIVE;
 		public static Boolean IGNORE_SPECTATOR;
+		public static Boolean AUTO_ALLOW_FLIGHT;
 
 		private static void init() {
 			setPathPrefix("ClaimFly");
 			CLAIMFLY_CHAT_PREFIX = getString("ChatPrefix");
 			IGNORE_CREATIVE = getBoolean("ignoreCreativeMode");
 			IGNORE_SPECTATOR = getBoolean("ignoreSpectatorMode");
+			AUTO_ALLOW_FLIGHT = getBoolean("AutoAllowFlightOnEnterClaim");
 		}
 	}
 
