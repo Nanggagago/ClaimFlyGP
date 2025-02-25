@@ -6,6 +6,7 @@ import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nonnull;
 import java.util.function.Supplier;
 
 public class ClaimUtils {
@@ -25,6 +26,11 @@ public class ClaimUtils {
 
 	public static boolean hasAccessTrust(Player player, Location location) {
 		Supplier<String> supplier = getClaim(location).checkPermission(player, ClaimPermission.Access, null);
+		return supplier == null;
+	}
+
+	public static boolean hasAccessTrust(Player player, @Nonnull Claim claim) {
+		Supplier<String> supplier = claim.checkPermission(player, ClaimPermission.Access, null);
 		return supplier == null;
 	}
 

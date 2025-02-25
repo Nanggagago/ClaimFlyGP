@@ -3,7 +3,6 @@ package dev.shadmage.claimflygp.events;
 import dev.shadmage.claimflygp.settings.PermissionsData;
 import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.utils.ClaimUtils;
-import io.papermc.paper.event.entity.EntityMoveEvent;
 import me.ryanhamshire.GriefPrevention.Claim;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -15,7 +14,7 @@ import org.mineacademy.fo.Common;
 import org.mineacademy.fo.annotation.AutoRegister;
 
 @AutoRegister
-public final class ClaimEntryEvent implements Listener {
+public final class AutoEnableFlightListener implements Listener {
 
 	@EventHandler
 	private void AutoEnableFlightOnClaimEnter(PlayerMoveEvent event) {
@@ -33,60 +32,39 @@ public final class ClaimEntryEvent implements Listener {
 		Claim fromClaim = ClaimUtils.getClaim(locFrom);
 		Claim toClaim = ClaimUtils.getClaim(locTo);
 
+		if(fromClaim != toClaim)
+			handleChangedClaimArea(player, fromClaim, toClaim);
+	}
 
-
-
+	private void handleChangedClaimArea(Player player, Claim fromClaim, Claim toClaim) {
 		// check if player will be moving out of a claim
 		if(toClaim == null) {
-			// Check if player was previously in a claim
-			if(fromClaim == null) return;
-
-			// Check for permissions to fly in unclaimed space
-			if(player.hasPermission(PermissionsData.PERMISSION_CLAIMFLY_UNCLAIMED)) {
-				EnablePlayerFlight(player);
-			} else {
-				DisablePlayerFlight(player);
-			}
+			AllowPlayerFlight(player, player.hasPermission(PermissionsData.PERMISSION_CLAIMFLY_UNCLAIMED));
 			return;
 		}
-
-		// Player is moving into a claim
-		// Check if they were previously in the same claim
-		if(fromClaim != null) {
-			if(fromClaim == toClaim) return;
-		}
-
 		// Check if this is an admin claim and if player has adminclaimfly permission
-		if(toClaim.isAdminClaim() && player.hasPermission(PermissionsData.PERMISSION_CLAIMFLY_ADMIN)) {
-			EnablePlayerFlight(player);
+		if(toClaim.isAdminClaim()) {
+			AllowPlayerFlight(player, player.hasPermission(PermissionsData.PERMISSION_CLAIMFLY_ADMIN));
 			return;
 		}
-
 		// Check if this claim is owned by the player and if player has claimfly permission
-		if(ClaimUtils.isClaimOwner(player, locTo) && player.hasPermission(PermissionsData.PERMISSION_CLAIMFLY_USE)) {
-			EnablePlayerFlight(player);
+		if(toClaim.getOwnerID() == player.getUniqueId()) {
+			AllowPlayerFlight(player, player.hasPermission(PermissionsData.PERMISSION_CLAIMFLY_USE));
 			return;
 		}
-
 		// Check if player is trusted in the claim and has otherclaimfly permission
 		if(player.hasPermission(PermissionsData.PERMISSION_CLAIMFLY_OTHERS)) {
-			if(ClaimUtils.hasAccessTrust(player, locTo)) {
-				EnablePlayerFlight(player);
-			}
+			AllowPlayerFlight(player, ClaimUtils.hasAccessTrust(player, toClaim));
+			return;
 		}
-
-		DisablePlayerFlight(player);
+		// If somehow this function hasn't returned a value. Disable flight
+		AllowPlayerFlight(player, false);
 	}
 
-	private void EnablePlayerFlight(Player player) {
-		if(player.getAllowFlight()) return;
-		player.setAllowFlight(true);
-		Common.tellNoPrefix(player, Common.colorize("&8&l[&9&li&8&l]&7 " + Settings.Messages.FLIGHT_ENABLED));
-	}
-
-	private void DisablePlayerFlight(Player player) {
-		if(!player.getAllowFlight()) return;
-		player.setAllowFlight(false);
-		Common.tellNoPrefix(player, Common.colorize("&8&l[&9&li&8&l]&7 " + Settings.Messages.FLIGHT_DISABLED));
+	private void AllowPlayerFlight(Player player, Boolean allowFlight) {
+		if(player.getAllowFlight() == allowFlight) return;
+		player.setAllowFlight(allowFlight);
+		Common.tellNoPrefix(player, Common.colorize("&8&l[&9&li&8&l]&7 " +
+				(allowFlight ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED)));
 	}
 }

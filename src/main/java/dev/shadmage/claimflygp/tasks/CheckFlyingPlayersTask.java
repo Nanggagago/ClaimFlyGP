@@ -9,6 +9,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.mineacademy.fo.Common;
+import org.mineacademy.fo.remain.CompPotionEffectType;
 import org.mineacademy.fo.remain.Remain;
 
 public class CheckFlyingPlayersTask extends BukkitRunnable {
@@ -27,13 +28,13 @@ public class CheckFlyingPlayersTask extends BukkitRunnable {
 				checkResult = flightCheck.check(player);
 				if (!checkResult.equals(FlightCheck.FLIGHT_ALLOWED)) {
 					try { //give player 'slow falling effect
-						player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 200, 1));
+						player.addPotionEffect(new PotionEffect(CompPotionEffectType.SLOW_FALLING, 200, 1));
 					} catch (Exception ex) {
 						//could not add effect to player.... ignore and continue disabling flight
 					}
 					player.setFlying(false);
 					player.setAllowFlight(false);
-					Common.tellNoPrefix(player, "Your flight has been disabled");
+					Common.tellNoPrefix(player, Common.colorize("&8&l[&9&li&8&l]&7 " + Settings.Messages.FLIGHT_DISABLED));
 				}
 			}
 		}
