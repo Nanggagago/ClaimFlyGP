@@ -28,6 +28,7 @@ public class ClaimFlyGPPlugin extends SimplePlugin {
 
 	@Override
 	protected void onReloadablesStart() {
-		Common.runTimer(0, 5, new CheckFlyingPlayersTask());
+		if(!Settings.ClaimFly.AUTO_ALLOW_FLIGHT)
+			Common.runTimer(0, 5, new CheckFlyingPlayersTask());
 	}
 }

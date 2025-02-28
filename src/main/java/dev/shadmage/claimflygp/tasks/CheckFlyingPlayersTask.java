@@ -1,12 +1,10 @@
 package dev.shadmage.claimflygp.tasks;
 
-import dev.shadmage.claimflygp.ClaimFlyGPPlugin;
 import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.utils.FlightCheck;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.mineacademy.fo.Common;
 import org.mineacademy.fo.remain.CompPotionEffectType;
