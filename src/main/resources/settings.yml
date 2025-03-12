@@ -3,6 +3,7 @@
 # !-----------------------------------------------------------------------------------------------!
 Version: 1
 Prefix: "&8[&9Claim Fly&8]&e"
+Command_Aliases: [ claimflyadmin, cfadmin ]
 Log_Lag_Over_Millis: 100
 Debug: [ ]
 ClaimFly:
@@ -11,6 +12,7 @@ ClaimFly:
   ignoreSpectatorMode: true
   # Players wont need to use /claimfly command to be able to fly if this is enabled
   # *NB* This will allow flight, not make them start flying.
+  # they will still need the correct permission nodes though
   AutoAllowFlightOnEnterClaim: false
 Messages:
   noFlyPerms: '&cYou do not have permission to fly on this server!'

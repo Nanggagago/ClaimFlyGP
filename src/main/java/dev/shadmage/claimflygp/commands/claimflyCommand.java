@@ -1,6 +1,6 @@
 package dev.shadmage.claimflygp.commands;
 
-import dev.shadmage.claimflygp.settings.PermissionsData;
+import dev.shadmage.claimflygp.settings.PermissionData;
 import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.utils.FlightCheck;
 import org.bukkit.entity.Player;
@@ -12,7 +12,7 @@ import org.mineacademy.fo.command.SimpleCommand;
 public final class claimflyCommand extends SimpleCommand {
 	public claimflyCommand() {
 		super("claimfly|cfly|fly");
-		setPermission(PermissionsData.PERMISSION_CLAIMFLY_USE);
+		setPermission(PermissionData.PERMISSION_CLAIMFLY_USE);
 	}
 
 	@Override

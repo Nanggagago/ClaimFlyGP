@@ -1,8 +1,9 @@
 package dev.shadmage.claimflygp.settings;
 
 import org.mineacademy.fo.command.annotation.Permission;
+import org.mineacademy.fo.command.annotation.PermissionGroup;
 
-public class PermissionsData {
+public class PermissionData {
 	@Permission
 	public static final String PERMISSION_CLAIMFLY_USE = "claimfly.use";
 	@Permission
@@ -11,4 +12,15 @@ public class PermissionsData {
 	public static final String PERMISSION_CLAIMFLY_OTHERS = "claimfly.claims.others";
 	@Permission
 	public static final String PERMISSION_CLAIMFLY_UNCLAIMED = "claimfly.claims.unclaimed";
+	@Permission
+	public static final String PERMISSION_CLAIMFLY_BYPASS = "claimfly.claims.bypass";
+
+	@PermissionGroup
+	public static class Admin{
+		@Permission
+		public static final String PERMISSION_CLAIMFLY_RELOAD = "claimfly.admin.reload";
+		@Permission
+		public static final String PERMISSION_CLAIMFLY_PERMS = "claimfly.admin.permissions";
+	}
+
 }

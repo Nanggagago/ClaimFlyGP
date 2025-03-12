@@ -1,11 +1,9 @@
 package dev.shadmage.claimflygp.events;
 
-import com.bekvon.bukkit.residence.commands.area;
 import dev.shadmage.claimflygp.settings.DebugValues;
-import dev.shadmage.claimflygp.settings.PermissionsData;
+import dev.shadmage.claimflygp.settings.PermissionData;
 import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.utils.ClaimUtils;
-import fr.xephi.authme.data.auth.PlayerCache;
 import me.ryanhamshire.GriefPrevention.Claim;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -37,8 +35,13 @@ public final class AutoEnableFlightListener implements Listener {
 		Claim fromClaim = ClaimUtils.getClaim(locFrom);
 		Claim toClaim = ClaimUtils.getClaim(locTo);
 
-		if(fromClaim != toClaim)
+		if(fromClaim != toClaim) {
+			if(player.hasPermission(PermissionData.PERMISSION_CLAIMFLY_BYPASS)) {
+				AllowPlayerFlight(player, true);
+				return;
+			}
 			handleChangedClaimArea(player, fromClaim, toClaim);
+		}
 	}
 
 	private void handleChangedClaimArea(Player player, Claim fromClaim, Claim toClaim) {
@@ -46,25 +49,25 @@ public final class AutoEnableFlightListener implements Listener {
 		if(toClaim == null) {
 			if(Settings.DEBUG_SECTIONS.contains(DebugValues.AUTO_ALLOW_FLIGHT))
 				Common.log("[" + DebugValues.AUTO_ALLOW_FLIGHT + "] Player " + player.getName() + " has entered an unclaimed area ");
-			AllowPlayerFlight(player, player.hasPermission(PermissionsData.PERMISSION_CLAIMFLY_UNCLAIMED));
+			AllowPlayerFlight(player, player.hasPermission(PermissionData.PERMISSION_CLAIMFLY_UNCLAIMED));
 			return;
 		}
 		// Check if this is an admin claim and if player has adminclaimfly permission
 		if(toClaim.isAdminClaim()) {
 			if(Settings.DEBUG_SECTIONS.contains(DebugValues.AUTO_ALLOW_FLIGHT))
 				Common.log("[" + DebugValues.AUTO_ALLOW_FLIGHT + "] Player " + player.getName() + " has entered an Admin Claim");
-			AllowPlayerFlight(player, player.hasPermission(PermissionsData.PERMISSION_CLAIMFLY_ADMIN));
+			AllowPlayerFlight(player, player.hasPermission(PermissionData.PERMISSION_CLAIMFLY_ADMIN));
 			return;
 		}
 		// Check if this claim is owned by the player and if player has claimfly permission
 		if(toClaim.getOwnerID().equals(player.getUniqueId())) {
 			if(Settings.DEBUG_SECTIONS.contains(DebugValues.AUTO_ALLOW_FLIGHT))
 				Common.log("[" + DebugValues.AUTO_ALLOW_FLIGHT + "] Player " + player.getName() + " has entered their own claim");
-			AllowPlayerFlight(player, player.hasPermission(PermissionsData.PERMISSION_CLAIMFLY_USE));
+			AllowPlayerFlight(player, player.hasPermission(PermissionData.PERMISSION_CLAIMFLY_USE));
 			return;
 		}
 		// Check if player is trusted in the claim and has otherclaimfly permission
-		if(player.hasPermission(PermissionsData.PERMISSION_CLAIMFLY_OTHERS)) {
+		if(player.hasPermission(PermissionData.PERMISSION_CLAIMFLY_OTHERS)) {
 			if(Settings.DEBUG_SECTIONS.contains(DebugValues.AUTO_ALLOW_FLIGHT))
 				Common.log("[" + DebugValues.AUTO_ALLOW_FLIGHT + "] Player " + player.getName() + " has entered another players claim");
 			AllowPlayerFlight(player, ClaimUtils.hasAccessTrust(player, toClaim));

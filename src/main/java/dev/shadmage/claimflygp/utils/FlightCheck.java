@@ -1,12 +1,13 @@
 package dev.shadmage.claimflygp.utils;
 
-import dev.shadmage.claimflygp.ClaimFlyGPPlugin;
-import dev.shadmage.claimflygp.settings.PermissionsData;
+import dev.shadmage.claimflygp.settings.DebugValues;
+import dev.shadmage.claimflygp.settings.PermissionData;
 import dev.shadmage.claimflygp.settings.Settings;
 import me.ryanhamshire.GriefPrevention.Claim;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.mineacademy.fo.Common;
 import org.mineacademy.fo.remain.CompParticle;
 
 public class FlightCheck {
@@ -14,22 +15,40 @@ public class FlightCheck {
 
 
 	public String check(Player player) {
-		if (!player.hasPermission(PermissionsData.PERMISSION_CLAIMFLY_USE)) {
+		if (!player.hasPermission(PermissionData.PERMISSION_CLAIMFLY_USE)) {
 			return Settings.Messages.NO_FLY;
 		}
 
-		if (ClaimUtils.isInAdminClaim(player)) { //Player is in a admin claim
-			if (!(ClaimUtils.hasAccessTrust(player) || player.hasPermission(PermissionsData.PERMISSION_CLAIMFLY_ADMIN))) {
-				return Settings.Messages.NO_FLY_THIS_CLAIM.replace("%ClaimOwner%", ClaimUtils.getClaim(player).getOwnerName());
+		if(!player.hasPermission(PermissionData.PERMISSION_CLAIMFLY_BYPASS)) {
+			if(Settings.DEBUG_SECTIONS.contains(DebugValues.FLIGHTCHECK_COMMAND))
+				Common.logFramed(
+						"Owner: " + ClaimUtils.isClaimOwner(player),
+						"hasTrust: " + ClaimUtils.hasAccessTrust(player),
+						"FlyOthersPerm: " + player.hasPermission(PermissionData.PERMISSION_CLAIMFLY_OTHERS)
+				);
+
+			if (ClaimUtils.isInAdminClaim(player)) { //Player is in a admin claim
+				if (!(ClaimUtils.hasAccessTrust(player) || player.hasPermission(PermissionData.PERMISSION_CLAIMFLY_ADMIN))) {
+					return Settings.Messages.NO_FLY_THIS_CLAIM.replace("%ClaimOwner%", ClaimUtils.getClaim(player).getOwnerName());
+				}
+			} else if (ClaimUtils.isInClaim(player)) { //Player is in a player claim
+				if(!ClaimUtils.isClaimOwner(player)) {
+					//Player not in their own claim
+					//Check if they have perms to fly in other player claims
+					if(!player.hasPermission(PermissionData.PERMISSION_CLAIMFLY_OTHERS)){
+						return Settings.Messages.NO_FLY_OUTSIDE_CLAIM;
+					}
+					// Check if they have trust in this claim
+					if(!ClaimUtils.hasAccessTrust(player)){
+						return Settings.Messages.NO_FLY_THIS_CLAIM.replace("%ClaimOwner%", ClaimUtils.getClaim(player).getOwnerName());
+					}
+				}
+			} else if (!player.hasPermission(PermissionData.PERMISSION_CLAIMFLY_UNCLAIMED)) { // player isnt in a claim...
+				return Settings.Messages.NO_FLY_OUTSIDE_CLAIM;
 			}
-		} else if (ClaimUtils.isInClaim(player)) { //Player is in a player claim
-			if (!(ClaimUtils.isClaimOwner(player) || ClaimUtils.hasAccessTrust(player) || player.hasPermission(PermissionsData.PERMISSION_CLAIMFLY_OTHERS))) {
-				return Settings.Messages.NO_FLY_THIS_CLAIM.replace("%ClaimOwner%", ClaimUtils.getClaim(player).getOwnerName());
-			}
-		} else if (!player.hasPermission(PermissionsData.PERMISSION_CLAIMFLY_UNCLAIMED)) { // player isnt in a claim... check if he has bypass
-			return Settings.Messages.NO_FLY_OUTSIDE_CLAIM;
+			showFlightBoundaries(player);
 		}
-		showFlightBoundaries(player);
+
 		return FLIGHT_ALLOWED;
 	}
 
