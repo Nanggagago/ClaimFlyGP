@@ -88,7 +88,6 @@ public final class AutoEnableFlightListener implements Listener {
 			}
 		}
 		player.setAllowFlight(allowFlight);
-		Common.tellNoPrefix(player, Common.colorize("&8&l[&9&li&8&l]&7 " +
-				(allowFlight ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED)));
+		Common.tellNoPrefix(player, Common.colorize((allowFlight ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED)));
 	}
 }

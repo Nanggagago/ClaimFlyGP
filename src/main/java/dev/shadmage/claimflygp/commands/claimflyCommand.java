@@ -25,7 +25,7 @@ public final class claimflyCommand extends SimpleCommand {
 		if (checkResult.equals(FlightCheck.FLIGHT_ALLOWED)) {
 			boolean newFlightStatus = !(player.getAllowFlight());
 			player.setAllowFlight(newFlightStatus);
-			tellInfo((newFlightStatus ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED));
+			tellNoPrefix((newFlightStatus ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED));
 		} else {
 			Common.tell(player, checkResult);
 		}
