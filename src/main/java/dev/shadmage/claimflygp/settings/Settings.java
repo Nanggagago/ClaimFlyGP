@@ -26,6 +26,7 @@ public class Settings extends SimpleSettings {
 		public static Boolean IGNORE_CREATIVE;
 		public static Boolean IGNORE_SPECTATOR;
 		public static Boolean AUTO_ALLOW_FLIGHT;
+		public static Boolean MESSAGE_ON_ACTIONBAR;
 
 		private static void init() {
 			setPathPrefix("ClaimFly");
@@ -33,6 +34,7 @@ public class Settings extends SimpleSettings {
 			IGNORE_CREATIVE = getBoolean("ignoreCreativeMode");
 			IGNORE_SPECTATOR = getBoolean("ignoreSpectatorMode");
 			AUTO_ALLOW_FLIGHT = getBoolean("AutoAllowFlightOnEnterClaim");
+			MESSAGE_ON_ACTIONBAR = getBoolean("MessageOnActionBar");
 		}
 	}
 

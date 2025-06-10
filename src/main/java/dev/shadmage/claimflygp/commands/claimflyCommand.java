@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.mineacademy.fo.Common;
 import org.mineacademy.fo.annotation.AutoRegister;
 import org.mineacademy.fo.command.SimpleCommand;
+import org.mineacademy.fo.remain.Remain;
 
 @AutoRegister
 public final class claimflyCommand extends SimpleCommand {
@@ -25,9 +26,17 @@ public final class claimflyCommand extends SimpleCommand {
 		if (checkResult.equals(FlightCheck.FLIGHT_ALLOWED)) {
 			boolean newFlightStatus = !(player.getAllowFlight());
 			player.setAllowFlight(newFlightStatus);
-			tellNoPrefix((newFlightStatus ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED));
+			if(Settings.ClaimFly.MESSAGE_ON_ACTIONBAR) {
+				Remain.sendActionBar(player, Common.colorize((newFlightStatus ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED)));
+			} else {
+				Common.tellNoPrefix(player, Common.colorize((newFlightStatus ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED)));
+			}
 		} else {
-			Common.tell(player, checkResult);
+			if(Settings.ClaimFly.MESSAGE_ON_ACTIONBAR) {
+				Remain.sendActionBar(player, checkResult);
+			} else {
+				Common.tellNoPrefix(player, checkResult);
+			}
 		}
 	}
 }

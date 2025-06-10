@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
 import org.mineacademy.fo.Common;
 import org.mineacademy.fo.annotation.AutoRegister;
+import org.mineacademy.fo.remain.Remain;
 
 @AutoRegister
 public final class FlightToggleListener implements Listener {
@@ -22,7 +23,14 @@ public final class FlightToggleListener implements Listener {
 		if (event.isFlying()) {
 			if (!checkResult.equals(FlightCheck.FLIGHT_ALLOWED)) {
 				event.getPlayer().setAllowFlight(false);
-				Common.tellTimed(5, player, checkResult);
+
+				if(Settings.ClaimFly.MESSAGE_ON_ACTIONBAR) {
+					Common.runLater(5, ()->{
+						Remain.sendActionBar(player, checkResult);
+					});
+				} else {
+					Common.tellTimed(5, player, checkResult);
+				}
 				event.setCancelled(true);
 			}
 		}

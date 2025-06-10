@@ -14,6 +14,9 @@ ClaimFly:
   # *NB* This will allow flight, not make them start flying.
   # they will still need the correct permission nodes though
   AutoAllowFlightOnEnterClaim: false
+  # Display messages in actionbar instead of chat
+  # True = ActionBar; False = Chat
+  MessageOnActionBar: true
 Messages:
   noFlyPerms: '&cYou do not have permission to fly on this server!'
   # Accepts %ClaimOwner% placeholder to get the current claimowners name

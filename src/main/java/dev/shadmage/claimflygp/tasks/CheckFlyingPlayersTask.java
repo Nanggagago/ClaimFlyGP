@@ -32,7 +32,12 @@ public class CheckFlyingPlayersTask extends BukkitRunnable {
 					}
 					player.setFlying(false);
 					player.setAllowFlight(false);
-					Common.tellNoPrefix(player, Common.colorize("&8&l[&9&li&8&l]&7 " + Settings.Messages.FLIGHT_DISABLED));
+
+					if(Settings.ClaimFly.MESSAGE_ON_ACTIONBAR) {
+						Remain.sendActionBar(player, Common.colorize("&7" + Settings.Messages.FLIGHT_DISABLED));
+					} else {
+						Common.tellNoPrefix(player, Common.colorize("&7" + Settings.Messages.FLIGHT_DISABLED));
+					}
 				}
 			}
 		}

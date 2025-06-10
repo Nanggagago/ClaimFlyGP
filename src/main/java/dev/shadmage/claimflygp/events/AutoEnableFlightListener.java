@@ -15,6 +15,7 @@ import org.bukkit.potion.PotionEffect;
 import org.mineacademy.fo.Common;
 import org.mineacademy.fo.annotation.AutoRegister;
 import org.mineacademy.fo.remain.CompPotionEffectType;
+import org.mineacademy.fo.remain.Remain;
 
 @AutoRegister
 public final class AutoEnableFlightListener implements Listener {
@@ -88,6 +89,11 @@ public final class AutoEnableFlightListener implements Listener {
 			}
 		}
 		player.setAllowFlight(allowFlight);
-		Common.tellNoPrefix(player, Common.colorize((allowFlight ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED)));
+
+		if(Settings.ClaimFly.MESSAGE_ON_ACTIONBAR) {
+			Remain.sendActionBar(player, Common.colorize((allowFlight ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED)));
+		} else {
+			Common.tellNoPrefix(player, Common.colorize((allowFlight ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED)));
+		}
 	}
 }
