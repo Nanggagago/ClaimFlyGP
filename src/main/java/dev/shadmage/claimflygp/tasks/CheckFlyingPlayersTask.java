@@ -2,6 +2,7 @@ package dev.shadmage.claimflygp.tasks;
 
 import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.utils.FlightCheck;
+import dev.shadmage.claimflygp.utils.PlayerMessenger;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -32,12 +33,7 @@ public class CheckFlyingPlayersTask extends BukkitRunnable {
 					}
 					player.setFlying(false);
 					player.setAllowFlight(false);
-
-					if(Settings.ClaimFly.MESSAGE_ON_ACTIONBAR) {
-						Remain.sendActionBar(player, Common.colorize("&7" + Settings.Messages.FLIGHT_DISABLED));
-					} else {
-						Common.tellNoPrefix(player, Common.colorize("&7" + Settings.Messages.FLIGHT_DISABLED));
-					}
+					PlayerMessenger.PlayerNotification(player, Settings.Messages.FLIGHT_DISABLED);
 				}
 			}
 		}

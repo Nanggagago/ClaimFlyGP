@@ -2,6 +2,7 @@ package dev.shadmage.claimflygp.events;
 
 import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.utils.FlightCheck;
+import dev.shadmage.claimflygp.utils.PlayerMessenger;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -23,14 +24,7 @@ public final class FlightToggleListener implements Listener {
 		if (event.isFlying()) {
 			if (!checkResult.equals(FlightCheck.FLIGHT_ALLOWED)) {
 				event.getPlayer().setAllowFlight(false);
-
-				if(Settings.ClaimFly.MESSAGE_ON_ACTIONBAR) {
-					Common.runLater(5, ()->{
-						Remain.sendActionBar(player, checkResult);
-					});
-				} else {
-					Common.tellTimed(5, player, checkResult);
-				}
+				PlayerMessenger.PlayerNotification(player, checkResult);
 				event.setCancelled(true);
 			}
 		}

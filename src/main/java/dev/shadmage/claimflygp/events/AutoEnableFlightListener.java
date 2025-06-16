@@ -4,6 +4,7 @@ import dev.shadmage.claimflygp.settings.DebugValues;
 import dev.shadmage.claimflygp.settings.PermissionData;
 import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.utils.ClaimUtils;
+import dev.shadmage.claimflygp.utils.PlayerMessenger;
 import me.ryanhamshire.GriefPrevention.Claim;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -89,11 +90,6 @@ public final class AutoEnableFlightListener implements Listener {
 			}
 		}
 		player.setAllowFlight(allowFlight);
-
-		if(Settings.ClaimFly.MESSAGE_ON_ACTIONBAR) {
-			Remain.sendActionBar(player, Common.colorize((allowFlight ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED)));
-		} else {
-			Common.tellNoPrefix(player, Common.colorize((allowFlight ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED)));
-		}
+		PlayerMessenger.PlayerNotification(player, (allowFlight ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED));
 	}
 }

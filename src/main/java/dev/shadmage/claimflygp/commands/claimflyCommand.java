@@ -3,6 +3,7 @@ package dev.shadmage.claimflygp.commands;
 import dev.shadmage.claimflygp.settings.PermissionData;
 import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.utils.FlightCheck;
+import dev.shadmage.claimflygp.utils.PlayerMessenger;
 import org.bukkit.entity.Player;
 import org.mineacademy.fo.Common;
 import org.mineacademy.fo.annotation.AutoRegister;
@@ -26,17 +27,9 @@ public final class claimflyCommand extends SimpleCommand {
 		if (checkResult.equals(FlightCheck.FLIGHT_ALLOWED)) {
 			boolean newFlightStatus = !(player.getAllowFlight());
 			player.setAllowFlight(newFlightStatus);
-			if(Settings.ClaimFly.MESSAGE_ON_ACTIONBAR) {
-				Remain.sendActionBar(player, Common.colorize((newFlightStatus ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED)));
-			} else {
-				Common.tellNoPrefix(player, Common.colorize((newFlightStatus ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED)));
-			}
+			PlayerMessenger.PlayerNotification(player, (newFlightStatus ? Settings.Messages.FLIGHT_ENABLED : Settings.Messages.FLIGHT_DISABLED));
 		} else {
-			if(Settings.ClaimFly.MESSAGE_ON_ACTIONBAR) {
-				Remain.sendActionBar(player, checkResult);
-			} else {
-				Common.tellNoPrefix(player, checkResult);
-			}
+			PlayerMessenger.PlayerNotification(player, checkResult);
 		}
 	}
 }

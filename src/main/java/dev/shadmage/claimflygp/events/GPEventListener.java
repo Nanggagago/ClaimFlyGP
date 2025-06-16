@@ -2,6 +2,7 @@ package dev.shadmage.claimflygp.events;
 
 import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.utils.FlightCheck;
+import dev.shadmage.claimflygp.utils.PlayerMessenger;
 import me.ryanhamshire.GriefPrevention.Claim;
 import me.ryanhamshire.GriefPrevention.events.*;
 import org.bukkit.entity.Entity;
@@ -58,11 +59,7 @@ public final class GPEventListener implements Listener {
 		if (!checkResult.equals(FlightCheck.FLIGHT_ALLOWED)) {
 			player.addPotionEffect(new PotionEffect(CompPotionEffectType.SLOW_FALLING, 200, 1));
 			player.setFlying(false);
-			if(Settings.ClaimFly.MESSAGE_ON_ACTIONBAR) {
-				Remain.sendActionBar(player, Common.colorize(Settings.Messages.FLIGHT_DISABLED));
-			} else {
-				Common.tellNoPrefix(player, Common.colorize(Settings.Messages.FLIGHT_DISABLED));
-			}
+			PlayerMessenger.PlayerNotification(player, Settings.Messages.FLIGHT_DISABLED);
 		}
 	}
 
