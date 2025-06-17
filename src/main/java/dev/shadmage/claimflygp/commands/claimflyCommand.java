@@ -1,7 +1,6 @@
 package dev.shadmage.claimflygp.commands;
 
 import dev.shadmage.claimflygp.settings.PermissionData;
-import dev.shadmage.claimflygp.settings.Settings;
 import dev.shadmage.claimflygp.utils.FlightCheck;
 import dev.shadmage.claimflygp.utils.PlayerUtils;
 import org.bukkit.entity.Player;

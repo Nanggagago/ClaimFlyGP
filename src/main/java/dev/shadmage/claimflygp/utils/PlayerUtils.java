@@ -1,7 +1,6 @@
 package dev.shadmage.claimflygp.utils;
 
 import dev.shadmage.claimflygp.settings.Settings;
-import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.mineacademy.fo.Common;
