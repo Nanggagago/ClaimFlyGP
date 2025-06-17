@@ -33,6 +33,9 @@ public class ClaimFlyGPPlugin extends SimplePlugin {
 		metrics.addCustomChart(new Metrics.SimplePie("using_autoenable_claimfly", () -> {
 			return Settings.ClaimFly.AUTO_ALLOW_FLIGHT.toString();
 		}));
+		metrics.addCustomChart(new Metrics.SimplePie("message_notification_method", () -> {
+			return Settings.ClaimFly.MESSAGE_ON_ACTIONBAR ? "Actionbar" : "Chat";
+		}));
 		metrics.addCustomChart(new Metrics.SimplePie("ignoring_creative", () -> {
 			return Settings.ClaimFly.IGNORE_CREATIVE.toString();
 		}));
