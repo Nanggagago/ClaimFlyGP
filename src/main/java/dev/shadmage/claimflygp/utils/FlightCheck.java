@@ -7,12 +7,14 @@ import me.ryanhamshire.GriefPrevention.Claim;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
 import org.mineacademy.fo.Common;
 import org.mineacademy.fo.remain.CompParticle;
+import org.mineacademy.fo.remain.CompPotionEffectType;
+import org.mineacademy.fo.remain.Remain;
 
 public class FlightCheck {
 	public final static String FLIGHT_ALLOWED = "allow";
-
 
 	public String check(Player player) {
 		if (!player.hasPermission(PermissionData.PERMISSION_CLAIMFLY_USE)) {
@@ -76,6 +78,28 @@ public class FlightCheck {
 
 
 			}
+		}
+	}
+
+	public void CheckAllPlayersForIllegalFlight(){
+		Common.runLater(() ->{
+			for(Player player : Remain.getOnlinePlayers()){
+				if(player.isFlying())
+					CheckPlayerForIllegalFlight(player);
+			}
+		});
+	}
+
+	private void CheckPlayerForIllegalFlight(Player player) {
+		GameMode playerGamemode = player.getGameMode();
+		if(Settings.ClaimFly.IGNORE_CREATIVE && playerGamemode == GameMode.CREATIVE) return;
+		if(Settings.ClaimFly.IGNORE_SPECTATOR && playerGamemode == GameMode.SPECTATOR) return;
+
+		FlightCheck flightCheck = new FlightCheck();
+		String checkResult = flightCheck.check(player);
+		if (!checkResult.equals(FlightCheck.FLIGHT_ALLOWED)) {
+			player.addPotionEffect(new PotionEffect(CompPotionEffectType.SLOW_FALLING, 200, 1));
+			PlayerUtils.TogglePlayerFlight(player, false);
 		}
 	}
 }
