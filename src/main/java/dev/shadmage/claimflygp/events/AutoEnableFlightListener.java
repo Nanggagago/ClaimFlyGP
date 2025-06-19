@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.mineacademy.fo.Common;
 import org.mineacademy.fo.annotation.AutoRegister;
 
@@ -24,10 +25,7 @@ public final class AutoEnableFlightListener implements Listener {
 		if(!Settings.ClaimFly.AUTO_ALLOW_FLIGHT) return;
 
 		Player player = event.getPlayer();
-		GameMode playerGameMode = player.getGameMode();
-
-		if(Settings.ClaimFly.IGNORE_CREATIVE && playerGameMode == GameMode.CREATIVE) return;
-		if(Settings.ClaimFly.IGNORE_SPECTATOR && playerGameMode == GameMode.SPECTATOR) return;
+		if(ignorePlayerGamemode(player)) return;
 
 		Location locTo = event.getTo();
 		Location locFrom = event.getFrom();
@@ -35,15 +33,40 @@ public final class AutoEnableFlightListener implements Listener {
 		Claim toClaim = ClaimUtils.getClaim(locTo);
 
 		if(fromClaim != toClaim) {
-			if(player.hasPermission(PermissionData.PERMISSION_CLAIMFLY_BYPASS)) {
-				PlayerUtils.TogglePlayerFlight(player, true);
-				return;
-			}
 			handleChangedClaimArea(player, fromClaim, toClaim);
 		}
 	}
 
+	@EventHandler
+	private void onPlayerTeleport(PlayerTeleportEvent event) {
+		Player player = event.getPlayer();
+
+		if(ignorePlayerGamemode(player)) return;
+
+		Location locTo = event.getTo();
+		Location locFrom = event.getFrom();
+		Claim fromClaim = ClaimUtils.getClaim(locFrom);
+		Claim toClaim = ClaimUtils.getClaim(locTo);
+
+		if(fromClaim != toClaim) {
+			if(Settings.ClaimFly.AUTO_ALLOW_FLIGHT)
+				handleChangedClaimArea(player, fromClaim, toClaim);
+			else
+				PlayerUtils.TogglePlayerFlight(player, false);
+		}
+	}
+
+	private boolean ignorePlayerGamemode(Player player){
+		GameMode playerGameMode = player.getGameMode();
+		if(Settings.ClaimFly.IGNORE_CREATIVE && playerGameMode == GameMode.CREATIVE) return true;
+		return Settings.ClaimFly.IGNORE_SPECTATOR && playerGameMode == GameMode.SPECTATOR;
+	}
+
 	private void handleChangedClaimArea(Player player, Claim fromClaim, Claim toClaim) {
+		if(player.hasPermission(PermissionData.PERMISSION_CLAIMFLY_BYPASS)) {
+			PlayerUtils.TogglePlayerFlight(player, true);
+			return;
+		}
 		// check if player will be moving out of a claim
 		if(toClaim == null) {
 			if(Settings.DEBUG_SECTIONS.contains(DebugValues.AUTO_ALLOW_FLIGHT))
