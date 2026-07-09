@@ -14,7 +14,7 @@
         <author>shadmage</author>
         <main.class>dev.shadmage.claimflygp.ClaimFlyGPPlugin</main.class>
         <!-- =========================================================================================================== -->
-        <foundation.version>6.10.0</foundation.version>
+        <foundation.version>6.9.22</foundation.version>
         <!-- https://github.com/kangarko/Foundation/releases -->
         <mavencompiler.version>3.15.0</mavencompiler.version>
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
