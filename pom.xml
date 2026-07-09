@@ -6,7 +6,7 @@
     <!-- =============================================================================================================== -->
     <groupId>dev.shadmage</groupId>
     <artifactId>claimflygp</artifactId>
-    <name>ClaimFlyTest</name>
+    <name>ClaimFlyGP</name>
     <version>2.3.0</version>
     <packaging>jar</packaging>
     <!-- =============================================================================================================== -->
