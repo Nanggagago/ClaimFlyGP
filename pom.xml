@@ -16,17 +16,17 @@
         <!-- =========================================================================================================== -->
         <foundation.version>6.10.0</foundation.version>
         <!-- https://github.com/kangarko/Foundation/releases -->
-        <mavencompiler.version>3.13.0</mavencompiler.version>
+        <mavencompiler.version>3.15.0</mavencompiler.version>
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
         <mavenshade.version>3.6.0</mavenshade.version>
         <!-- https://repository.apache.org/content/repositories/snapshots/org/apache/maven/plugins/maven-shade-plugin/ -->
-        <mavenjarplugin.version>3.4.2</mavenjarplugin.version>
+        <mavenjarplugin.version>3.5.0</mavenjarplugin.version>
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jar-plugin -->
-        <griefprevention.version>16.18.4</griefprevention.version>
+        <griefprevention.version>16.18.7</griefprevention.version>
         <!-- https://github.com/TechFortress/GriefPrevention/releases -->
         <foundation.path>com.github.kangarko</foundation.path>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>21</java.version>
+        <java.version>1.8</java.version>
     </properties>
 
     <repositories>
